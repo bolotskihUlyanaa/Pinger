@@ -1,0 +1,8 @@
+server: "http://server:9000/"
+services:
+ - "db"
+ - "server"
+ - "web"
+delay: 10
+packages: 1
+timeout: 1

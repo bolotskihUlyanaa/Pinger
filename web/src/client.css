@@ -1,0 +1,21 @@
+  html{
+    background-color: #000000;
+  }
+  
+  .table{
+    margin: auto;
+    border-collapse: collapse;
+  }
+  
+  table .column{
+    border-bottom: 1px solid #FFFFFF;
+  }
+  
+  th, td, h1 {
+      padding: 20px;
+      font-family: Courier;
+      color: #ffffff;
+      text-align: center;
+  }
+
+  

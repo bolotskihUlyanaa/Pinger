@@ -1,0 +1,9 @@
+server: 9000
+client: "http://web:3000/"
+postgresconfig:
+  host:     "db" 
+  port:     5432 
+  dbname:   "pinger"
+  username: "admin"
+  password: "password"
+  sslmode:  "disable"

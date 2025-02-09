@@ -1,0 +1,47 @@
+services:
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d pinger"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "9000:9000"
+    depends_on:
+      db:
+        condition: service_healthy
+    tty: true
+    stdin_open: true
+  
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    depends_on:
+      - server
+    environment:
+      REACT_APP_API_URL: http://server:9000/
+    tty: true
+    stdin_open: true
+
+  pinger:
+    build:
+      context: ./pinger
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - server
+    tty: true
+    stdin_open: true
